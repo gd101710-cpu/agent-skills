@@ -1,0 +1,7 @@
+interface:
+  display_name: "work-issue"
+  short_description: "Plan, execute, and publish one GitHub issue in this session"
+  default_prompt: "Use $work-issue to take this issue through plan, execution, and PR: "
+
+policy:
+  allow_implicit_invocation: false

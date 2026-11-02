@@ -1,0 +1,7 @@
+interface:
+  display_name: "explain-diff"
+  short_description: "Understand a proposed change before PR publication"
+  default_prompt: "Use $explain-diff to teach me how the current branch's proposed PR change works."
+
+policy:
+  allow_implicit_invocation: false

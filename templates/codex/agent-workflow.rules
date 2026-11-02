@@ -1,0 +1,21 @@
+# Codex execpolicy rules for the agent-skills workspace workflow.
+# Install: sed "s|@AGENT_SKILLS@|$PWD|g" templates/codex/agent-workflow.rules > ~/.codex/rules/agent-workflow.rules
+# Run from the agent-skills checkout; regenerate after moving the checkout.
+
+# Local Git operations that write .git, which workspace-write keeps read-only.
+prefix_rule(
+    pattern = ["git", ["add", "commit", "worktree", "branch", "switch", "fetch", "rebase", "merge"]],
+    decision = "allow",
+)
+
+# Workflow ledger and workspace registry under the Git common directory.
+prefix_rule(
+    pattern = ["python3", "@AGENT_SKILLS@/skills/execute-tasks/scripts/taskctl.py"],
+    decision = "allow",
+)
+
+# The create-pr skill requires explicit publication authorization before this push.
+prefix_rule(
+    pattern = ["git", "push", "-u"],
+    decision = "prompt",
+)
